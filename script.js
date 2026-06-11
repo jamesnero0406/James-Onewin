@@ -48,11 +48,15 @@ document.querySelectorAll("[data-tabs]").forEach((tabs) => {
   const buttons = [...tabs.querySelectorAll("[data-tab]")];
   const panels = [...tabs.querySelectorAll("[data-panel]")];
 
+  const activate = (button) => {
+    buttons.forEach((item) => item.classList.toggle("active", item === button));
+    panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.panel === button.dataset.tab));
+  };
+
   buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      buttons.forEach((item) => item.classList.toggle("active", item === button));
-      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.panel === button.dataset.tab));
-    });
+    button.addEventListener("mouseenter", () => activate(button));
+    button.addEventListener("focus", () => activate(button));
+    button.addEventListener("click", () => activate(button));
   });
 });
 
