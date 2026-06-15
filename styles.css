@@ -756,11 +756,26 @@ h3 {
 }
 
 .phone-rail figure {
+  position: relative;
   margin: 0;
-  padding: 10px;
+  padding: 18px 10px 10px;
   background: var(--ink);
-  border-radius: 22px;
+  border-radius: 34px;
   box-shadow: 0 24px 60px rgba(16, 40, 30, 0.16);
+}
+
+.phone-rail figure::before,
+.phone-mock::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 9px;
+  width: 68px;
+  height: 18px;
+  transform: translateX(-50%);
+  border-radius: 0 0 14px 14px;
+  background: #050505;
+  z-index: 3;
 }
 
 .phone-rail img {
@@ -768,7 +783,7 @@ h3 {
   height: 500px;
   object-fit: contain;
   object-position: top center;
-  border-radius: 14px;
+  border-radius: 24px;
   background: white;
   display: block;
 }
@@ -1062,9 +1077,9 @@ h3 {
   stroke-linecap: round;
 }
 
-.cost-line { stroke: url("#costLine"); }
-.rev-line { stroke: url("#revLine"); }
-.dau-line { stroke: url("#dauLine"); }
+.cost-line { stroke: #9ca19d; }
+.rev-line { stroke: var(--tennis); }
+.dau-line { stroke: var(--green); }
 
 .chart-dots circle {
   fill: white;
@@ -1489,15 +1504,25 @@ h3 {
 }
 
 .neck {
-  width: 168px;
-  height: 168px;
+  width: 180px;
+  height: 180px;
   display: grid;
   place-items: center;
   padding: 18px;
   border-radius: 50%;
-  background: rgba(201, 217, 74, 0.18);
-  border: 1px solid rgba(201, 217, 74, 0.46);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.42), transparent 26%),
+    radial-gradient(circle, #c9d94a 0%, #aebf36 58%, #1e3b2e 100%);
+  border: 4px solid rgba(255, 255, 255, 0.86);
+  box-shadow:
+    0 24px 70px rgba(16, 40, 30, 0.24),
+    0 0 0 10px rgba(201, 217, 74, 0.2);
   text-align: center;
+}
+
+.neck span {
+  color: var(--green-dark);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 .persona-grid {
@@ -1514,26 +1539,30 @@ h3 {
   flex-direction: column;
   justify-content: flex-end;
   background:
-    linear-gradient(0deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.78)),
+    linear-gradient(0deg, rgba(8, 22, 15, 0.86) 0%, rgba(8, 22, 15, 0.38) 50%, rgba(8, 22, 15, 0.06) 100%),
     var(--bg);
   background-size: cover;
   background-position: center;
 }
 
-.persona-card.novice { --bg: url("./assets/hero-lifestyle.png"); }
-.persona-card.starter { --bg: url("./assets/social-miniapp.png"); }
-.persona-card.pro { --bg: url("./assets/grand-slam.png"); }
+.persona-card.novice { --bg: url("./assets/persona-novice.png"); }
+.persona-card.starter { --bg: url("./assets/persona-starter.png"); }
+.persona-card.pro { --bg: url("./assets/persona-pro.png"); }
 
 .persona-card h3 {
   margin: 0 0 18px;
-  color: var(--green);
+  color: white;
   font-size: 32px;
+}
+
+.persona-card p {
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .persona-card small {
   display: block;
   margin-top: 20px;
-  color: var(--green);
+  color: var(--tennis);
   font-weight: 900;
   line-height: 1.45;
 }
@@ -1606,9 +1635,10 @@ h3 {
 }
 
 .phone-mock {
+  position: relative;
   width: min(340px, 82vw);
   aspect-ratio: 9 / 16;
-  padding: 18px;
+  padding: 30px 18px 18px;
   display: grid;
   grid-template-rows: auto 1fr auto;
   color: white;
@@ -1618,7 +1648,7 @@ h3 {
   background-size: cover;
   background-position: center;
   border: 12px solid var(--ink);
-  border-radius: 30px;
+  border-radius: 42px;
   box-shadow: 0 30px 70px rgba(16, 40, 30, 0.22);
 }
 
@@ -1640,13 +1670,17 @@ h3 {
 }
 
 .china-map {
-  min-height: 580px;
+  min-height: 0;
   position: relative;
   border: 1px solid var(--line);
-  background:
-    radial-gradient(circle at 68% 40%, rgba(201, 217, 74, 0.14), transparent 20%),
-    linear-gradient(135deg, rgba(30, 59, 46, 0.08), rgba(255, 255, 255, 0.65));
+  background: var(--paper);
   overflow: hidden;
+}
+
+.china-map img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .china-map::before {
@@ -1658,6 +1692,7 @@ h3 {
   height: 76%;
   background: rgba(30, 59, 46, 0.1);
   clip-path: polygon(26% 10%, 62% 2%, 88% 20%, 78% 38%, 92% 58%, 68% 78%, 44% 72%, 28% 90%, 12% 66%, 20% 46%, 6% 28%);
+  display: none;
 }
 
 .city-dot {
